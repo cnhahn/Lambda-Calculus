@@ -1,0 +1,9 @@
+#####################################################################################################
+COURSE=CMPS 112
+ASGN=HW0
+COMPILER=cnhahn
+#####################################################################################################
+
+ -- Used resources from en.wikipedia.org/wiki/Church_encoding.
+ -- Also got help form TA's in section and group disscussion. 
+

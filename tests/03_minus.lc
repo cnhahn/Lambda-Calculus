@@ -30,11 +30,17 @@ let SND   = \p     -> p FALSE
 -- do not modify text BEFORE this line
 --------------------------------------------------------------------------------
 
+-- Cited from en.wikipedia.org/wiki/Church_encoding.
+-- Also got help from TA's in section and group disscussion.
+
 let SKIP1 = \f p -> PAIR(TRUE) (ITE (FST p)(f (SND p))(SND p))       -- (a)
-let DECR  = \a -> a      -- (b)
-let SUB   = \a -> a      -- (c)
-let ISZ   = \a -> a     -- (d)
-let EQL   = \a -> a     -- (e)
+let DECR  = \n f x -> n(\g h -> h(g f)) (\u -> x) (\u -> u)          -- (b)
+let SUB   = \a b -> b DECR a                                         -- (c)
+let ISZ   = \w -> w (\z -> FALSE) TRUE                               -- (d)
+
+let LEQ   = \s t -> ISZ (SUB t s)                          --helper function
+
+let EQL   = \k l -> AND (LEQ k l) (LEQ l k)                          -- (e)
 
 --------------------------------------------------------------------------------
 -- do not modify text AFTER this line
